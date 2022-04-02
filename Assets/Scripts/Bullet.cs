@@ -36,7 +36,7 @@ public class Bullet : MonoBehaviour
 
         //Set the direction
         direction = targetPoint - spawnPoint;
-        direction.y = 0; //As this is a 2D game, we don't want it to move in Y axis
+        direction.z = 0; //As this is a 2D game, we don't want it to move in Z axis
         direction.Normalize();
 
         disableCounter = timeToGetDisabled; //Bullet will deactivate when disableCounter reaches 0
@@ -47,5 +47,15 @@ public class Bullet : MonoBehaviour
     private void GetDisabled()
     {
         gameObject.SetActive(false);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            enemy.GetHarmed();
+            GetDisabled();
+        }
     }
 }

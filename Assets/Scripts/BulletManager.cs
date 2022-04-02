@@ -11,6 +11,7 @@ public class BulletManager : MonoBehaviour
     private Bullet[] bulletPool;
     private Player player;
     private bool isSpawning = true;
+    private EnemyManager enemyManager;
 
     private void Awake()
     {
@@ -24,6 +25,8 @@ public class BulletManager : MonoBehaviour
         }
 
         player = FindObjectOfType<Player>();
+        enemyManager = FindObjectOfType<EnemyManager>();
+
         StartCoroutine(SpawnBullets());
     }
 
@@ -36,12 +39,21 @@ public class BulletManager : MonoBehaviour
             if(bullet)
             {
                 Vector3 spawnPoint = player.bulletSpawnPoint.position;
-                Vector3 enemyPoint = spawnPoint + new Vector3(2, 0, 0);
+                Enemy closestEnemy = enemyManager.GetClosestVisibleEnemy(player.transform.position);
 
-                bullet.GetFired(spawnPoint, enemyPoint);
+                if(closestEnemy)
+                {
+                    Vector3 targetPoint = closestEnemy.transform.position;
+                    bullet.GetFired(spawnPoint, targetPoint);
+                    yield return new WaitForSeconds(fireInterval);
+                }
+                else
+                {
+                    yield return new WaitForEndOfFrame();
+                }
             }
 
-            yield return new WaitForSeconds(fireInterval);
+            yield return new WaitForEndOfFrame();
         }
     }
 
