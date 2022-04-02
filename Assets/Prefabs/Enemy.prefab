@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.3
-  maxHealth: 4
+  maxHealth: 2
   harmPerSecond: 2
   yToGetDisabled: -1.5
 --- !u!50 &6492589679838272875

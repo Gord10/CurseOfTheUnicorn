@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
+
     public float baseHorizontalSpeed = 3f;
     public float flySpeed = 11f;
     public float maxY = 1f; //Don't allow the player to move above this Y value
@@ -21,6 +24,8 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
+
         rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         health = maxHealth;
@@ -77,6 +82,8 @@ public class Player : MonoBehaviour
 
         //Move the player along the desired direction
         rigidbody.velocity = velocity;
+
+        Gamepad.current.SetMotorSpeeds(0.0f, 0.0f);
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -92,6 +99,20 @@ public class Player : MonoBehaviour
             {
                 GameManager.RestartScene();
             }
+        }
+    }
+
+    public void IncreaseHealth()
+    {
+        health += 5;
+        health = Mathf.Clamp(health, 0, maxHealth);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            VibrationManager.Vibrate();
         }
     }
 }

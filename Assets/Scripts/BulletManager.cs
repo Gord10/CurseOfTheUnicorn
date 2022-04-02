@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour
 {
+    public static BulletManager instance;
+
     public Bullet bulletPrefab;
     public int bulletAmountInPool = 20;
     public float fireInterval = 1f;
+    public float fireIntervalDecreaseCofactor = 0.8f;
 
     private Bullet[] bulletPool;
     private Player player;
@@ -15,6 +18,8 @@ public class BulletManager : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
+
         //Create the bullets in pool
         bulletPool = new Bullet[bulletAmountInPool];
         int i;
@@ -28,6 +33,11 @@ public class BulletManager : MonoBehaviour
         enemyManager = FindObjectOfType<EnemyManager>();
 
         StartCoroutine(SpawnBullets());
+    }
+
+    public void IncreaseFireSpeed()
+    {
+        fireInterval *= fireIntervalDecreaseCofactor;
     }
 
     private IEnumerator SpawnBullets()

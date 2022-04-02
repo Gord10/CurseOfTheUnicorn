@@ -64,6 +64,7 @@ public class Enemy : MonoBehaviour
         {
             collider.enabled = false;
             rigidbody.gravityScale = 1f;
+            GameManager.instance.ReportEnemyDeath();
         }
 
         StartCoroutine(ShowHarmedFeedback());
