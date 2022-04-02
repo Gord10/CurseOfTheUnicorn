@@ -51,7 +51,16 @@ public class Enemy : MonoBehaviour
             rigidbody.velocity = direction * speed;
 
             //Let the enemy look like as if he's looking at the player
-            spriteRenderer.flipX = direction.x < 0;
+            if(direction.x < 0)
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+            else
+            {
+                transform.rotation = Quaternion.identity;
+            }
+            
+            //spriteRenderer.flipX = direction.x < 0;
         }
 
         if(transform.position.y < yToGetDisabled)
