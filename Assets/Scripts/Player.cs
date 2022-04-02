@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 
 
     private Rigidbody2D rigidbody;
+    private Animator animator;
     private SpriteRenderer spriteRenderer;
     private Vector2 desiredMovementDirection = new Vector2();
     private bool isTouchingEnemy = false;
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
     {
         instance = this;
 
+        animator = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         health = maxHealth;
@@ -54,6 +56,9 @@ public class Player : MonoBehaviour
         {
             desiredMovementDirection.y = 0;
         }
+
+        animator.SetBool("flying", desiredMovementDirection.y > 0);
+
 
         //Flip the sprite renderer according to the X direction that the player wants to go
         if(desiredMovementDirection.x > 0)
