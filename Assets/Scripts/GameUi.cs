@@ -12,6 +12,8 @@ public class GameUi : MonoBehaviour
     public Text vibrationText;
     public Text levelText;
     public Text levelIncreaseText;
+    public GameObject gameOverScreen;
+    public Text survivedForSecondsText;
 
     private void Awake()
     {
@@ -20,6 +22,7 @@ public class GameUi : MonoBehaviour
         FillExperienceBar(0);
         vibrationText.enabled = false;
         levelIncreaseText.enabled = false;
+        gameOverScreen.SetActive(false);
     }
 
     public void UpdateLevelText(int newLevel)
@@ -28,6 +31,12 @@ public class GameUi : MonoBehaviour
         levelIncreaseText.enabled = true;
         levelIncreaseText.color = Color.white;
         StartCoroutine(FadeOutLevelIncreaseText());
+    }
+
+    public void ShowGameOverScreen()
+    {
+        gameOverScreen.SetActive(true);
+        survivedForSecondsText.text = survivedForSecondsText.text.Replace("#", TimeToText()); //Show how long the player survived
     }
 
     private IEnumerator FadeOutLevelIncreaseText()
@@ -57,9 +66,14 @@ public class GameUi : MonoBehaviour
 
     private void FixedUpdate()
     {
-        int minutes = (int) (Time.timeSinceLevelLoad / 60f);
-        int seconds = (int) Time.timeSinceLevelLoad % 60;
-        timeText.text = minutes + ":" + seconds.ToString("00");
+        timeText.text = TimeToText();
+    }
+
+    private string TimeToText()
+    {
+        int minutes = (int)(Time.timeSinceLevelLoad / 60f);
+        int seconds = (int)Time.timeSinceLevelLoad % 60;
+        return minutes + ":" + seconds.ToString("00");
     }
 
     public void ShowVibrationInfo(bool value)

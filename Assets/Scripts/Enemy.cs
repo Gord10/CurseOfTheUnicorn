@@ -5,7 +5,10 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float speed = 3;
-    public int maxHealth = 3;
+    public Sprite greenSprite;
+    public int maxHealthNormalDifficulty = 2;
+    public int maxHealthHardDifficulty = 3;
+    
     public float harmPerSecond = 2f;
     public float yToGetDisabled = -1.5f; //If he falls below this point, he will get disabled
  
@@ -15,7 +18,7 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Collider2D collider;
     private float timeWhenSpawned = 0f;
-    
+    private bool isShowingHarmedFeedback = false;
 
     private Player player;
 
@@ -67,12 +70,24 @@ public class Enemy : MonoBehaviour
             GameManager.instance.ReportEnemyDeath();
         }
 
-        StartCoroutine(ShowHarmedFeedback());
+        if(!isShowingHarmedFeedback)
+        {
+            StartCoroutine(ShowHarmedFeedback());
+        }
+        
     }
         
     public void Spawn(Vector3 spawnPoint)
     {
-        health = maxHealth;
+        health = maxHealthNormalDifficulty;
+
+        //Make the enemy hard
+        if(Time.timeSinceLevelLoad >= EnemyManager.instance.timeLimitForBeingDifficult)
+        {
+            health = maxHealthHardDifficulty;
+            spriteRenderer.sprite = greenSprite;
+        }
+
         transform.position = spawnPoint;
         gameObject.SetActive(true);
         timeWhenSpawned = Time.time;
@@ -82,6 +97,7 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator ShowHarmedFeedback()
     {
+        isShowingHarmedFeedback = true;
         float t = 0;
         while(t < 1)
         {
@@ -96,6 +112,8 @@ public class Enemy : MonoBehaviour
             spriteRenderer.color = Color.Lerp(Color.white, Color.red, t);
             yield return new WaitForEndOfFrame();
         }
+
+        isShowingHarmedFeedback = false;
     }
 
     public void Update()

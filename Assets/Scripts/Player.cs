@@ -40,6 +40,12 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.instance.IsGameOver())
+        {
+            harmedUnicornSpriteRenderer.enabled = true;
+            return;
+        }
+
         //Read the player input
         desiredMovementDirection.x = Input.GetAxis("Horizontal");
         desiredMovementDirection.y = Input.GetAxis("Vertical");
@@ -65,6 +71,11 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(GameManager.instance.IsGameOver())
+        {
+            harmedUnicornSpriteRenderer.enabled = true;
+            return;
+        }
         harmedUnicornSpriteRenderer.enabled = false;
 
         Vector2 velocity = new Vector2();
@@ -88,6 +99,11 @@ public class Player : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        if(GameManager.instance.IsGameOver())
+        {
+            return;
+        }
+
         if(collision.gameObject.CompareTag("Enemy"))
         {
             Enemy enemy = collision.gameObject.GetComponentInParent<Enemy>();
@@ -97,7 +113,7 @@ public class Player : MonoBehaviour
 
             if(health <= 0)
             {
-                GameManager.RestartScene();
+                GameManager.instance.ReportGameOver();
             }
         }
     }

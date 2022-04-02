@@ -158,7 +158,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.3
-  maxHealth: 2
+  greenSprite: {fileID: 21300000, guid: 55bbe2ff2d1e2964fbec4cd86ab15786, type: 3}
+  maxHealthNormalDifficulty: 2
+  maxHealthHardDifficulty: 6
   harmPerSecond: 2
   yToGetDisabled: -1.5
 --- !u!50 &6492589679838272875

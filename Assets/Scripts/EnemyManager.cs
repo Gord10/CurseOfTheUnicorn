@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    public static EnemyManager instance;
+
     public float minSpawnX = -10, maxSpawnX = 10;
     public int enemyPoolLength = 30;
     public Enemy enemyPrefab;
     public float spawnInterval = 0.5f;
     public float spawnIntervalDecreasePerSecond = 0.001f; //To make the game harder, we will make the spawning faster as time passes by
     public float minSpawnInterval = 0.1f; //The hardest spawning interval
+    public float timeLimitForBeingDifficult = 240; //If the game time exceeds this seconds, we will use maxHealthHardDifficulty as enemy health
 
     private Player player;
     private Enemy[] enemies;
@@ -17,6 +20,8 @@ public class EnemyManager : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
+
         player = FindObjectOfType<Player>();
 
         Enemy[] previousEnemiesInScene = FindObjectsOfType<Enemy>();

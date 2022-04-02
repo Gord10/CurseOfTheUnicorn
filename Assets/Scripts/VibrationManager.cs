@@ -27,7 +27,15 @@ public class VibrationManager : MonoBehaviour
     {
         if (Gamepad.current != null && isVibrationEnabled)
         {
-            Gamepad.current.SetMotorSpeeds(0.1f, 0.1f);
+            Gamepad.current.SetMotorSpeeds(0.03f, 0.03f);
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        if (Gamepad.current != null)
+        {
+            Gamepad.current.SetMotorSpeeds(0.0f, 0.0f);
         }
     }
 }
