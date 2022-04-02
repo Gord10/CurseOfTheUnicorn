@@ -8,6 +8,8 @@ public class EnemyManager : MonoBehaviour
     public int enemyPoolLength = 30;
     public Enemy enemyPrefab;
     public float spawnInterval = 0.5f;
+    public float spawnIntervalDecreasePerSecond = 0.001f; //To make the game harder, we will make the spawning faster as time passes by
+    public float minSpawnInterval = 0.1f; //The hardest spawning interval
 
     private Player player;
     private Enemy[] enemies;
@@ -102,5 +104,11 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-
+    public void Update()
+    {
+        if (spawnInterval > minSpawnInterval)
+        {
+            spawnInterval -= spawnIntervalDecreasePerSecond * Time.deltaTime;
+        }        
+    }
 }

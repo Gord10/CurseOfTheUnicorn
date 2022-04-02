@@ -37,11 +37,7 @@ public class GameManager : MonoBehaviour
         BulletManager.instance.IncreaseFireSpeed();
         currentExp = 0;
 
-        if(playerLevel >= levelExpRequirements.Length)
-        {
-            Player.instance.IncreaseHealth();
-        }
-        else
+        if(playerLevel < levelExpRequirements.Length)
         {
             expRequirementForNextLevel = levelExpRequirements[playerLevel - 1];
         }
