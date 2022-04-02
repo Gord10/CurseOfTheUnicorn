@@ -8,15 +8,22 @@ public class Player : MonoBehaviour
     public float flySpeed = 11f;
     public float maxY = 1f; //Don't allow the player to move above this Y value
     public Transform bulletSpawnPoint;
+    public float maxHealth = 10;
+    public SpriteRenderer harmedUnicornSpriteRenderer;
+
+    private float health = 0; //maxHealth will be assigned to here at Awake
+
 
     private Rigidbody2D rigidbody;
     private SpriteRenderer spriteRenderer;
     private Vector2 desiredMovementDirection = new Vector2();
+    private bool isTouchingEnemy = false;
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        health = maxHealth;
     }
 
     // Start is called before the first frame update
@@ -40,11 +47,11 @@ public class Player : MonoBehaviour
         //Flip the sprite renderer according to the X direction that the player wants to go
         if(desiredMovementDirection.x > 0)
         {
-            spriteRenderer.flipX = false;
+            transform.rotation = Quaternion.identity;
         }
         else if(desiredMovementDirection.x < 0)
         {
-            spriteRenderer.flipX = true;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
 
         //We don't want to player to move too fast when they are moving diagonally
@@ -53,6 +60,8 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        harmedUnicornSpriteRenderer.enabled = false;
+
         Vector2 velocity = new Vector2();
         velocity.x = desiredMovementDirection.x * baseHorizontalSpeed;
 
@@ -68,7 +77,21 @@ public class Player : MonoBehaviour
 
         //Move the player along the desired direction
         rigidbody.velocity = velocity;
+    }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            health -= enemy.harmPerSecond * Time.fixedDeltaTime;
+            GameUi.instance.FillHealthBar(health / maxHealth);
+            harmedUnicornSpriteRenderer.enabled = true;
 
+            if(health <= 0)
+            {
+                GameManager.RestartScene();
+            }
+        }
     }
 }

@@ -55,6 +55,11 @@ public class EnemyManager : MonoBehaviour
         float minDistance = float.MaxValue;
         Enemy closestEnemy = null;
 
+        if(enemies == null)
+        {
+            return null;
+        }
+
         int i;
         for(i = 0; i < enemies.Length; i++)
         {
@@ -73,6 +78,11 @@ public class EnemyManager : MonoBehaviour
         return closestEnemy;
     }
 
+    public bool IsXPointTooCloseToPlayer(float x)
+    {
+        return Mathf.Abs(player.transform.position.x - x) < 1.8f;
+    }
+
     private IEnumerator SpawnEnemies()
     {
         while(true)
@@ -81,8 +91,12 @@ public class EnemyManager : MonoBehaviour
             if(enemy)
             {
                 float x = Random.Range(minSpawnX, maxSpawnX);
-                Vector3 spawnPoint = new Vector3(x, 0, 0);
-                enemy.Spawn(spawnPoint);
+
+                if(!IsXPointTooCloseToPlayer(x)) //Don't spawn the enemy if x point too close to the player
+                {
+                    Vector3 spawnPoint = new Vector3(x, 0, 0);
+                    enemy.Spawn(spawnPoint);
+                }
             }
             yield return new WaitForSeconds(spawnInterval);
         }
