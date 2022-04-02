@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  timeToGetDisabled: 1
+  timeToGetDisabled: 3
 --- !u!58 &3886268631743132832
 CircleCollider2D:
   m_ObjectHideFlags: 0
