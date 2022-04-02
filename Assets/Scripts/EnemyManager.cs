@@ -50,7 +50,7 @@ public class EnemyManager : MonoBehaviour
         return null;
     }
 
-    public Enemy GetClosestVisibleEnemy(Vector3 playerPosition)
+    public Enemy GetClosestEnemyAsTarget(Vector3 playerPosition)
     {
         float minDistance = float.MaxValue;
         Enemy closestEnemy = null;
@@ -64,7 +64,7 @@ public class EnemyManager : MonoBehaviour
         for(i = 0; i < enemies.Length; i++)
         {
             Enemy enemy = enemies[i];
-            if(enemy.gameObject.activeSelf && enemy.IsVisible())
+            if(enemy.gameObject.activeSelf && enemy.IsVisible() && enemy.IsAlive())
             {
                 float distance = Vector3.Distance(playerPosition, enemy.transform.position);
                 if(distance < minDistance)

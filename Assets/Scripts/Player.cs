@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Enemy"))
         {
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            Enemy enemy = collision.gameObject.GetComponentInParent<Enemy>();
             health -= enemy.harmPerSecond * Time.fixedDeltaTime;
             GameUi.instance.FillHealthBar(health / maxHealth);
             harmedUnicornSpriteRenderer.enabled = true;

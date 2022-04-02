@@ -39,7 +39,7 @@ public class BulletManager : MonoBehaviour
             if(bullet)
             {
                 Vector3 spawnPoint = player.bulletSpawnPoint.position;
-                Enemy closestEnemy = enemyManager.GetClosestVisibleEnemy(player.transform.position);
+                Enemy closestEnemy = enemyManager.GetClosestEnemyAsTarget(player.transform.position);
 
                 if(closestEnemy)
                 {
