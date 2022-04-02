@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float baseSpeed = 3f;
+    public float baseHorizontalSpeed = 3f;
+    public float flySpeed = 11f;
+    public Transform bulletSpawnPoint;
 
     private Rigidbody2D rigidbody;
     private SpriteRenderer spriteRenderer;
@@ -45,7 +47,13 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Vector2 velocity = new Vector2();
+        velocity.x = desiredMovementDirection.x * baseHorizontalSpeed;
+
+        velocity.y = desiredMovementDirection.y * flySpeed;
+        velocity.y += Physics2D.gravity.y * 0.3f; //Apply gravity to the velocity
+
         //Move the player along the desired direction
-        rigidbody.velocity = desiredMovementDirection * baseSpeed;
+        rigidbody.velocity = velocity;
     }
 }
