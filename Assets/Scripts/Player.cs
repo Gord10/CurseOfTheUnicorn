@@ -121,6 +121,7 @@ public class Player : MonoBehaviour
             health -= enemy.harmPerSecond * Time.fixedDeltaTime;
             GameUi.instance.FillHealthBar(health / maxHealth);
             harmedUnicornSpriteRenderer.enabled = true;
+            GameCamera.instance.Shake();
 
             if(health <= 0)
             {
