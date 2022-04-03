@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
 
     private void IncreaseLevel()
     {
+        SfxManager.instance.PlayLevelUpSound();
         Time.timeScale = 0;
         playerLevel++;
         currentExp = 0;
@@ -88,6 +89,7 @@ public class GameManager : MonoBehaviour
 
     public void ReportGameOver()
     {
+        SfxManager.instance.PlayLoseSound();
         isGameOver = true;
         GameUi.instance.ShowGameOverScreen();
         Time.timeScale = 0f;

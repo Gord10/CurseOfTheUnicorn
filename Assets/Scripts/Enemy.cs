@@ -42,6 +42,11 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(player == null)
+        {
+            player = FindObjectOfType<Player>();
+        }
+
         if(health > 0)
         {
             //Fly towards the player

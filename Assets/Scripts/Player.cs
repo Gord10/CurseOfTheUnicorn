@@ -77,7 +77,13 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(GameManager.instance.IsGameOver())
+        GameManager gameManager = GameManager.instance;
+        if(gameManager == null)
+        {
+            gameManager = FindObjectOfType<GameManager>();
+        }
+
+        if(gameManager.IsGameOver())
         {
             harmedUnicornSpriteRenderer.enabled = true;
             return;
@@ -99,8 +105,7 @@ public class Player : MonoBehaviour
 
         //Move the player along the desired direction
         rigidbody.velocity = velocity;
-
-        Gamepad.current.SetMotorSpeeds(0.0f, 0.0f);
+        VibrationManager.StopVibration();
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -120,6 +125,10 @@ public class Player : MonoBehaviour
             if(health <= 0)
             {
                 GameManager.instance.ReportGameOver();
+            }
+            else
+            {
+                SfxManager.instance.PlayHurtSound();
             }
         }
     }

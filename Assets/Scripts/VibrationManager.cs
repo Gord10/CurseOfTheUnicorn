@@ -31,11 +31,16 @@ public class VibrationManager : MonoBehaviour
         }
     }
 
-    private void OnApplicationQuit()
+    public static void StopVibration()
     {
         if (Gamepad.current != null)
         {
             Gamepad.current.SetMotorSpeeds(0.0f, 0.0f);
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        StopVibration();
     }
 }

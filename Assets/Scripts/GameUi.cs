@@ -16,6 +16,7 @@ public class GameUi : MonoBehaviour
     public Text survivedForSecondsText;
     public GameObject upgradeScreen;
     public Button healButton;
+    public Button fasterAttackButton;
 
     private EventSystem eventSystem;
 
@@ -99,7 +100,7 @@ public class GameUi : MonoBehaviour
     public void OpenUpgradeScreen()
     {
         upgradeScreen.SetActive(true);
-        eventSystem.firstSelectedGameObject = healButton.gameObject;
+        eventSystem.firstSelectedGameObject = fasterAttackButton.gameObject;
     }
 
     public void HealPlayer()
