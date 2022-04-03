@@ -16,7 +16,7 @@ public class VibrationManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.V))
+        if(Input.GetKeyDown(KeyCode.V)) //Switch the vibration
         {
             isVibrationEnabled = !isVibrationEnabled;
             GameUi.instance.ShowVibrationInfo(isVibrationEnabled);
@@ -27,7 +27,9 @@ public class VibrationManager : MonoBehaviour
     {
         if (Gamepad.current != null && isVibrationEnabled)
         {
-            Gamepad.current.SetMotorSpeeds(0.03f, 0.03f);
+            float lowFrequency = 0.03f;
+            float hiFrequency = 0.03f;
+            Gamepad.current.SetMotorSpeeds(lowFrequency, hiFrequency);
         }
     }
 

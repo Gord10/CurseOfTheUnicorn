@@ -6,7 +6,7 @@ public class GameCamera : MonoBehaviour
 {
     public static GameCamera instance;
 
-    public float minX = -6f, maxX = 6f;
+    public float minX = -6f, maxX = 6f; //These values are used to not to show beyond the colliders that limit the game world
     public float shakeTime = 0.1f; //The camera will shake for this duration if player touches enemy
     public float shakeMaxZ = 1f; //The Z rotation of the camera will be withing -shakeMaxZ and shakeMaxZ
     private bool isShaking = false;
@@ -29,7 +29,7 @@ public class GameCamera : MonoBehaviour
         //Follow the player in X axis
         Vector3 newPosition = transform.position;
         newPosition.x = Player.instance.transform.position.x;
-        newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
+        newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX); //These clamping is used to not to show beyond the colliders that limit the game world
         transform.position = newPosition;
 
         //Try to shake the camera
@@ -54,6 +54,4 @@ public class GameCamera : MonoBehaviour
         isShaking = true;
         shakeCounter = shakeTime;
     }
-
-
 }

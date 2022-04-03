@@ -110,17 +110,22 @@ public class Enemy : MonoBehaviour
     public IEnumerator ShowHarmedFeedback()
     {
         isShowingHarmedFeedback = true;
+        float gettingRedSpeed = 10f;
+        float gettingWhiteSpeed = 3f;
+
         float t = 0;
+        //Turn into red
         while(t < 1)
-        {
-            t = Mathf.MoveTowards(t, 1f, Time.deltaTime * 10f);
+        {   
+            t = Mathf.MoveTowards(t, 1f, Time.deltaTime * gettingRedSpeed);
             spriteRenderer.color = Color.Lerp(Color.white, Color.red, t);
             yield return new WaitForEndOfFrame();
         }
 
+        //Turn into white
         while(t > 0)
         {
-            t = Mathf.MoveTowards(t, 0f, Time.deltaTime * 3f);
+            t = Mathf.MoveTowards(t, 0f, Time.deltaTime * gettingWhiteSpeed);
             spriteRenderer.color = Color.Lerp(Color.white, Color.red, t);
             yield return new WaitForEndOfFrame();
         }
@@ -130,8 +135,10 @@ public class Enemy : MonoBehaviour
 
     public void Update()
     {
-        //Sway movement with code
-        float spriteY = Mathf.Sin((Time.time - timeWhenSpawned) * 5f) * 0.05f;
+        //Sway movement with code, we will use Sin function
+        float speed = 5f;
+        float movementRange = 0.05f;
+        float spriteY = Mathf.Sin((Time.time - timeWhenSpawned) * speed) * movementRange;
         spriteRenderer.transform.localPosition = new Vector3(0, spriteY, 0);
     }
 }

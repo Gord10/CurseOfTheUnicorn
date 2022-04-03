@@ -84,10 +84,10 @@ public class Player : MonoBehaviour
         velocity.x = desiredMovementDirection.x * baseHorizontalSpeed;
 
         velocity.y = desiredMovementDirection.y * flySpeed;
-        velocity.y += Physics2D.gravity.y * 0.1f; //Apply gravity to the velocity
+        float gravityFactor = 0.1f; //If we don't multiply gravity with this value, player falls to the ground too hard/fast
+        velocity.y += Physics2D.gravity.y * gravityFactor; //Apply gravity to the velocity
 
         //Don't allow the player to move above the camera frame
-        //Vector3 rigidbodyPos = transform.position;
         if (transform.position.y > maxY && velocity.y > 0)
         {
             velocity.y = 0;
