@@ -53,6 +53,12 @@ public class Player : MonoBehaviour
         desiredMovementDirection.x = Input.GetAxis("Horizontal");
         desiredMovementDirection.y = Input.GetAxis("Vertical");
 
+        //Read keyboard's space key for flying
+        /*if(desiredMovementDirection.y == 0)
+        {
+            desiredMovementDirection.y = (Input.GetKey(KeyCode.Space)) ? 1 : 0;
+        }
+        */
         if(desiredMovementDirection.y < 0)
         {
             desiredMovementDirection.y = 0;
