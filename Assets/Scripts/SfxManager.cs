@@ -24,10 +24,11 @@ public class SfxManager : MonoBehaviour
             return;
         }
 
+        //Get a random clip
         int index = Random.Range(0, hurtClips.Length);
         AudioClip clip = hurtClips[index];
         audioSource.clip = clip;
-        audioSource.pitch = Random.Range(0.95f, 1.1f);
+        audioSource.pitch = Random.Range(0.95f, 1.1f); //Randomize the sound
         audioSource.Play();
     }
 

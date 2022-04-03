@@ -64,8 +64,6 @@ public class Enemy : MonoBehaviour
             {
                 transform.rotation = Quaternion.identity;
             }
-            
-            //spriteRenderer.flipX = direction.x < 0;
         }
 
         if(transform.position.y < yToGetDisabled)
@@ -88,7 +86,6 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(ShowHarmedFeedback());
         }
-        
     }
         
     public void Spawn(Vector3 spawnPoint)
@@ -109,6 +106,7 @@ public class Enemy : MonoBehaviour
         rigidbody.gravityScale = 0;
     }
 
+    //Enemy will go red, then to normal color again
     public IEnumerator ShowHarmedFeedback()
     {
         isShowingHarmedFeedback = true;

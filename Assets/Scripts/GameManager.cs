@@ -8,13 +8,12 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public int currentExp = 0;
-    public int expRequirementForNextLevel = 10;
-    
     public int[] levelExpRequirements; //Level 1's exp requirement is at 0th index
-   
+
+    private int expRequirementForNextLevel = 10; //Player will reach the next level when they gain this much experience. We will read the necessary value from levelExpRequirements array 
     private int playerLevel = 1;
     private bool isGameOver = false;
-    private float timeWhenGameWasOver = 0;
+    private float timeWhenGameWasOver = 0; //Time.realtimeSinceStartup will be assigned to this value when game is over
 
     private void Awake()
     {
@@ -28,6 +27,7 @@ public class GameManager : MonoBehaviour
         return isGameOver;
     }
 
+    //Player has killed an enemy 
     public void ReportEnemyDeath()
     {
         currentExp++;
@@ -67,7 +67,8 @@ public class GameManager : MonoBehaviour
     {
         if(isGameOver)
         {
-            if(Input.anyKeyDown && Time.realtimeSinceStartup - timeWhenGameWasOver > 1f)
+            float threshold = 1f; //We do this check in order to avoid player accidentally skipping the game over screen by pressing a key
+            if(Input.anyKeyDown && Time.realtimeSinceStartup - timeWhenGameWasOver > threshold)
             {
                 RestartScene();
             }

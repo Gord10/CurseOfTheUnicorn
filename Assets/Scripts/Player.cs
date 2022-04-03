@@ -34,12 +34,6 @@ public class Player : MonoBehaviour
         health = maxHealth;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -53,19 +47,12 @@ public class Player : MonoBehaviour
         desiredMovementDirection.x = Input.GetAxis("Horizontal");
         desiredMovementDirection.y = Input.GetAxis("Vertical");
 
-        //Read keyboard's space key for flying
-        /*if(desiredMovementDirection.y == 0)
-        {
-            desiredMovementDirection.y = (Input.GetKey(KeyCode.Space)) ? 1 : 0;
-        }
-        */
         if(desiredMovementDirection.y < 0)
         {
             desiredMovementDirection.y = 0;
         }
 
         animator.SetBool("flying", desiredMovementDirection.y > 0);
-
 
         //Flip the sprite renderer according to the X direction that the player wants to go
         if(desiredMovementDirection.x > 0)
@@ -76,9 +63,6 @@ public class Player : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
-
-        //We don't want to player to move too fast when they are moving diagonally
-        //desiredMovementDirection = Vector2.ClampMagnitude(desiredMovementDirection, 1f);
     }
 
     private void FixedUpdate()
@@ -121,7 +105,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if(collision.gameObject.CompareTag("Enemy"))
+        if(collision.gameObject.CompareTag("Enemy")) //Player will be hurt
         {
             Enemy enemy = collision.gameObject.GetComponentInParent<Enemy>();
             health -= enemy.harmPerSecond * Time.fixedDeltaTime;
@@ -140,6 +124,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    //Player has chosen a heal upgrade
     public void IncreaseHealth()
     {
         health += healthIncreaseOnHeal;

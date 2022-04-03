@@ -24,6 +24,7 @@ public class EnemyManager : MonoBehaviour
 
         player = FindObjectOfType<Player>();
 
+        //Destroy the previous enemies in the scene
         Enemy[] previousEnemiesInScene = FindObjectsOfType<Enemy>();
         int i;
 
@@ -32,6 +33,7 @@ public class EnemyManager : MonoBehaviour
             Destroy(previousEnemiesInScene[i].gameObject);
         }
 
+        //Instantiate the enemies
         enemies = new Enemy[enemyPoolLength];
 
         for(i = 0; i < enemyPoolLength; i++)
@@ -57,11 +59,13 @@ public class EnemyManager : MonoBehaviour
         return null;
     }
 
+    //Gets the closest enemy who is both alive and rendered
     public Enemy GetClosestEnemyAsTarget(Vector3 playerPosition)
     {
         float minDistance = float.MaxValue;
         Enemy closestEnemy = null;
 
+        //Don't return anything if the array is not initialized yet
         if(enemies == null)
         {
             return null;
@@ -71,7 +75,8 @@ public class EnemyManager : MonoBehaviour
         for(i = 0; i < enemies.Length; i++)
         {
             Enemy enemy = enemies[i];
-            if(enemy.gameObject.activeSelf && enemy.IsVisible() && enemy.IsAlive())
+            //Check if the enemy is alive, active and rendered
+            if (enemy.gameObject.activeSelf && enemy.IsVisible() && enemy.IsAlive())
             {
                 float distance = Vector3.Distance(playerPosition, enemy.transform.position);
                 if(distance < minDistance)
@@ -85,9 +90,11 @@ public class EnemyManager : MonoBehaviour
         return closestEnemy;
     }
 
+    //We do this check, because we don't want to spawn an enemy that's too close to the player
     public bool IsXPointTooCloseToPlayer(float x)
     {
-        return Mathf.Abs(player.transform.position.x - x) < 1.8f;
+        float minDistance = 1.8f;
+        return Mathf.Abs(player.transform.position.x - x) < minDistance;
     }
 
     private IEnumerator SpawnEnemies()
