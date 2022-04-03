@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public Transform bulletSpawnPoint;
     public float maxHealth = 10;
     public SpriteRenderer harmedUnicornSpriteRenderer;
+    public float healthIncreaseOnHeal = 2f;
 
     private float health = 0; //maxHealth will be assigned to here at Awake
 
@@ -125,8 +126,9 @@ public class Player : MonoBehaviour
 
     public void IncreaseHealth()
     {
-        health += 5;
+        health += healthIncreaseOnHeal;
         health = Mathf.Clamp(health, 0, maxHealth);
+        GameUi.instance.FillHealthBar(health / maxHealth);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

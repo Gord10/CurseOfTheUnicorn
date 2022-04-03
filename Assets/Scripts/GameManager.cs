@@ -42,8 +42,8 @@ public class GameManager : MonoBehaviour
 
     private void IncreaseLevel()
     {
+        Time.timeScale = 0;
         playerLevel++;
-        BulletManager.instance.IncreaseFireSpeed();
         currentExp = 0;
 
         if(playerLevel < levelExpRequirements.Length)
@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
         }
         
         GameUi.instance.UpdateLevelText(playerLevel);
+        GameUi.instance.OpenUpgradeScreen();
     }
 
     // Start is called before the first frame update

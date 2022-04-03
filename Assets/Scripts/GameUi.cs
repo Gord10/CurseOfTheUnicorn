@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.EventSystems;
 public class GameUi : MonoBehaviour
 {
     public static GameUi instance;
@@ -14,6 +14,10 @@ public class GameUi : MonoBehaviour
     public Text levelIncreaseText;
     public GameObject gameOverScreen;
     public Text survivedForSecondsText;
+    public GameObject upgradeScreen;
+    public Button healButton;
+
+    private EventSystem eventSystem;
 
     private void Awake()
     {
@@ -23,6 +27,9 @@ public class GameUi : MonoBehaviour
         vibrationText.enabled = false;
         levelIncreaseText.enabled = false;
         gameOverScreen.SetActive(false);
+        upgradeScreen.SetActive(false);
+
+        eventSystem = FindObjectOfType<EventSystem>(true);
     }
 
     public void UpdateLevelText(int newLevel)
@@ -44,7 +51,7 @@ public class GameUi : MonoBehaviour
         float t = 3f;
         while(t > 0)
         {
-            t = Mathf.MoveTowards(t, 0, Time.deltaTime);
+            t = Mathf.MoveTowards(t, 0, Time.unscaledDeltaTime);
             Color color = levelIncreaseText.color;
             color.a = t;
             levelIncreaseText.color = color;
@@ -87,5 +94,25 @@ public class GameUi : MonoBehaviour
     private void DisableVibrationText()
     {
         vibrationText.enabled = false;
+    }
+
+    public void OpenUpgradeScreen()
+    {
+        upgradeScreen.SetActive(true);
+        eventSystem.firstSelectedGameObject = healButton.gameObject;
+    }
+
+    public void HealPlayer()
+    {
+        Player.instance.IncreaseHealth();
+        Time.timeScale = 1f;
+        upgradeScreen.SetActive(false);
+    }
+
+    public void IncreaseAttackSpeed()
+    {
+        BulletManager.instance.IncreaseFireSpeed();
+        Time.timeScale = 1f;
+        upgradeScreen.SetActive(false);
     }
 }
