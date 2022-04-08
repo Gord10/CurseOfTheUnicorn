@@ -116,7 +116,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player2 Idle 2-Sheet_0
+      name: Player2 Idle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -130,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36af1d596e4741240b42138f51596b16
-      internalID: 936561324
+      spriteID: 6d14c4597cef15f4da2619a7742650d7
+      internalID: 47824143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player2 Idle 2-Sheet_1
+      name: Player2 Idle_1
       rect:
         serializedVersion: 2
         x: 41
@@ -151,14 +151,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2f18f66659d55d4d91ac6152b872621
-      internalID: -381209919
+      spriteID: 3856973702bb92443960da719c77bb2e
+      internalID: -1070288543
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player2 Idle 2-Sheet_2
+      name: Player2 Idle_2
       rect:
         serializedVersion: 2
         x: 82
@@ -172,14 +172,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ff86b5d31e79da4f9c0340a0e23e35f
-      internalID: 1252939312
+      spriteID: f82587521298ef546863982ad516e825
+      internalID: 924361105
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player2 Idle 2-Sheet_3
+      name: Player2 Idle_3
       rect:
         serializedVersion: 2
         x: 123
@@ -193,8 +193,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6591b8388c901d44598c2264c25f8737
-      internalID: 921639203
+      spriteID: 079be3b03347f4a4c961979822d6ce70
+      internalID: -2090915363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player2 Idle_4
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 0
+        width: 41
+        height: 59
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 737d85de7e9c66549bd3a859c5aff64d
+      internalID: -1978655843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player2 Idle_5
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 0
+        width: 41
+        height: 59
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e0efcae32a0b884d9ea5644230590ba
+      internalID: -1457406103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player2 Idle_6
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 0
+        width: 41
+        height: 59
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63f16bb5f49ec3d498408a915bda4497
+      internalID: -1437667055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player2 Idle_7
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 0
+        width: 41
+        height: 59
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efcb14f9aa76464479b5a4e0aa8d8514
+      internalID: -2046537499
       vertices: []
       indices: 
       edges: []
@@ -210,10 +294,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player2 Idle 2-Sheet_2: 1252939312
-      Player2 Idle 2-Sheet_3: 921639203
-      Player2 Idle 2-Sheet_1: -381209919
-      Player2 Idle 2-Sheet_0: 936561324
+      Player2 Idle_0: 47824143
+      Player2 Idle_1: -1070288543
+      Player2 Idle_4: -1978655843
+      Player2 Idle_6: -1437667055
+      Player2 Idle_7: -2046537499
+      Player2 Idle_5: -1457406103
+      Player2 Idle_2: 924361105
+      Player2 Idle_3: -2090915363
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
