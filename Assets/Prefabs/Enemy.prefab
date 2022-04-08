@@ -242,10 +242,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3151123c268aefd438092c2e492ffaf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.3
+  speed: 0.5
   greenSprite: {fileID: 21300000, guid: 55bbe2ff2d1e2964fbec4cd86ab15786, type: 3}
   maxHealthNormalDifficulty: 2
-  maxHealthHardDifficulty: 6
+  maxHealthHardDifficulty: 4
   harmPerSecond: 2
   yToGetDisabled: -1.5
 --- !u!50 &6492589679838272875

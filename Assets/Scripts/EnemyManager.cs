@@ -93,7 +93,7 @@ public class EnemyManager : MonoBehaviour
     //We do this check, because we don't want to spawn an enemy that's too close to the player
     public bool IsXPointTooCloseToPlayer(float x)
     {
-        float minDistance = 1.8f;
+        float minDistance = 3.5f;
         return Mathf.Abs(player.transform.position.x - x) < minDistance;
     }
 
