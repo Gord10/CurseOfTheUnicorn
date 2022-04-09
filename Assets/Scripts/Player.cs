@@ -136,7 +136,14 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            VibrationManager.Vibrate();
+            if(collision.gameObject.GetComponent<Death>())
+            {
+                GameManager.instance.ReportTouchOfDeath();
+            }
+            else
+            {
+                VibrationManager.Vibrate();
+            }
         }
     }
 }

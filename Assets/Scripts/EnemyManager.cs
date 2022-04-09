@@ -6,6 +6,7 @@ public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager instance;
 
+    public Death deathPrefab;
     public float minSpawnX = -10, maxSpawnX = 10;
     public int enemyPoolLength = 30;
     public Enemy enemyPrefab;
@@ -16,7 +17,8 @@ public class EnemyManager : MonoBehaviour
 
     private Player player;
     private Enemy[] enemies;
-
+    private bool isSpawningEnemies = true;
+    private bool didWeSpawnDeath = false;
 
     private void Awake()
     {
@@ -99,7 +101,7 @@ public class EnemyManager : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
-        while(true)
+        while(isSpawningEnemies)
         {
             Enemy enemy = GetEnemyFromPool();
             if(enemy)
@@ -116,11 +118,34 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    public void SpawnDeath()
+    {
+        didWeSpawnDeath = true;
+        isSpawningEnemies = false;
+        //Kill the existing enemies in the scene
+        int i;
+        for(i = 0; i < enemies.Length; i++)
+        {
+            enemies[i].Die();
+        }
+
+        //Spawn Death at a random point
+        Death death = Instantiate(deathPrefab);
+        float x = Random.Range(minSpawnX, maxSpawnX);
+        Vector3 spawnPoint = new Vector3(x, 0, 0);
+        death.Spawn(spawnPoint);
+    }
+
     public void Update()
     {
         if (spawnInterval > minSpawnInterval)
         {
             spawnInterval -= spawnIntervalDecreasePerSecond * Time.deltaTime;
-        }        
+        }
+
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            SpawnDeath();
+        }
     }
 }

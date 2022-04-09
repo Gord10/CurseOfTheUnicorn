@@ -72,13 +72,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void GetHarmed()
+    public virtual void GetHarmed()
     {
         health--;
         if(health <= 0)
         {
-            collider.enabled = false;
-            rigidbody.gravityScale = 1f;
+            Die();
             GameManager.instance.ReportEnemyDeath();
         }
 
@@ -86,6 +85,13 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(ShowHarmedFeedback());
         }
+    }
+
+    public void Die()
+    {
+        collider.enabled = false;
+        rigidbody.gravityScale = 1f;
+        health = 0;
     }
         
     public void Spawn(Vector3 spawnPoint)

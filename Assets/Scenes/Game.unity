@@ -678,6 +678,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7039458994976320594, guid: 8675030724d07f649ac75f4f12e874be, type: 3}
+      propertyPath: gameTimeLimit
+      value: 600
+      objectReference: {fileID: 0}
     - target: {fileID: 7039458994976320595, guid: 8675030724d07f649ac75f4f12e874be, type: 3}
       propertyPath: m_Name
       value: Game Manager
@@ -739,6 +743,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7819101703998851895, guid: 7df69765f9388e84891272e122a215fa, type: 3}
+      propertyPath: deathPrefab
+      value: 
+      objectReference: {fileID: 271396498131353921, guid: 481db6105fa79874881c6f51619dfbac, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7df69765f9388e84891272e122a215fa, type: 3}
 --- !u!1001 &8381623881480191109
@@ -809,6 +817,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 8431225786138901897, guid: aef67ef1dfe42e640a98c517b3c7e2d7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8431225786138901899, guid: aef67ef1dfe42e640a98c517b3c7e2d7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8431225786138901900, guid: aef67ef1dfe42e640a98c517b3c7e2d7, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -866,26 +882,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8503080964792022865, guid: a38c510d7305d0b48bcd4942c628cd88, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8503080964792022865, guid: a38c510d7305d0b48bcd4942c628cd88, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8503080964792022866, guid: a38c510d7305d0b48bcd4942c628cd88, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 8503080964792022866, guid: a38c510d7305d0b48bcd4942c628cd88, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.27
-      objectReference: {fileID: 0}
-    - target: {fileID: 8503080964792022867, guid: a38c510d7305d0b48bcd4942c628cd88, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8503080965314918064, guid: a38c510d7305d0b48bcd4942c628cd88, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -934,13 +930,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8503080965314918068, guid: a38c510d7305d0b48bcd4942c628cd88, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 47824143, guid: c327a64adbc021243915d9a577587a75, type: 3}
-    - target: {fileID: 8503080965314918068, guid: a38c510d7305d0b48bcd4942c628cd88, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
+    - target: {fileID: 8503080965800236520, guid: a38c510d7305d0b48bcd4942c628cd88, type: 3}
+      propertyPath: m_BlendStyleIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503080965800236520, guid: a38c510d7305d0b48bcd4942c628cd88, type: 3}
+      propertyPath: m_ShadowIntensity
+      value: 0.992
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503080965800236520, guid: a38c510d7305d0b48bcd4942c628cd88, type: 3}
+      propertyPath: m_OverlapOperation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503080965800236520, guid: a38c510d7305d0b48bcd4942c628cd88, type: 3}
+      propertyPath: m_LightVolumeIntensity
+      value: 0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503080965800236520, guid: a38c510d7305d0b48bcd4942c628cd88, type: 3}
+      propertyPath: m_ShadowIntensityEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503080965800236520, guid: a38c510d7305d0b48bcd4942c628cd88, type: 3}
+      propertyPath: m_LightVolumeIntensityEnabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a38c510d7305d0b48bcd4942c628cd88, type: 3}

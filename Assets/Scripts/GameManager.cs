@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public float gameTimeLimit = 600; //Spawn Death after this amount of seconds
     public int currentExp = 0;
     public int[] levelExpRequirements; //Level 1's exp requirement is at 0th index
 
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
         instance = this;
         expRequirementForNextLevel = levelExpRequirements[0];
         Time.timeScale = 1f;
+
     }
 
     public bool IsGameOver()
@@ -59,7 +61,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        EnemyManager.instance.Invoke("SpawnDeath", gameTimeLimit);
     }
 
     // Update is called once per frame
@@ -95,5 +97,11 @@ public class GameManager : MonoBehaviour
         GameUi.instance.ShowGameOverScreen();
         Time.timeScale = 0f;
         timeWhenGameWasOver = Time.realtimeSinceStartup;
+    }
+
+    public void ReportTouchOfDeath()
+    {
+        VibrationManager.StopVibration();
+        SceneManager.LoadScene("Story4");
     }
 }
