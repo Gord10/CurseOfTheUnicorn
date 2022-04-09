@@ -32,7 +32,7 @@ public class StoryManager : MonoBehaviour
     void Update()
     {
         //Show the next line in the story if it exists. Else, load the next scene
-        if(Input.anyKeyDown)
+        if(Input.anyKeyDown && Time.timeSinceLevelLoad > 0.2f)
         {
             counter++;
             if(counter >= storyTexts.Length)

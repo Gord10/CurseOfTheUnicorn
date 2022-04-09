@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9956df69325ac64cbf8450c4e592a72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 2.8
   greenSprite: {fileID: 0}
   maxHealthNormalDifficulty: 2147483647
   maxHealthHardDifficulty: 2147483647

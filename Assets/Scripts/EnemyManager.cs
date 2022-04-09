@@ -132,20 +132,30 @@ public class EnemyManager : MonoBehaviour
         //Spawn Death at a random point
         Death death = Instantiate(deathPrefab);
         float x = Random.Range(minSpawnX, maxSpawnX);
+
+        //Make sure we find a point that's not too close to the player
+        while(IsXPointTooCloseToPlayer(x))
+        {
+            x = Random.Range(minSpawnX, maxSpawnX);
+        }
+
         Vector3 spawnPoint = new Vector3(x, 0, 0);
         death.Spawn(spawnPoint);
     }
 
     public void Update()
     {
+        //Make the game harder gradually
         if (spawnInterval > minSpawnInterval)
         {
             spawnInterval -= spawnIntervalDecreasePerSecond * Time.deltaTime;
         }
 
-        if(Input.GetKeyDown(KeyCode.P))
+#if UNITY_EDITOR || true
+        if (Input.GetKeyDown(KeyCode.L) && Input.GetKey(KeyCode.LeftShift))
         {
             SpawnDeath();
         }
+#endif
     }
 }
