@@ -24,7 +24,7 @@ public class GameCamera : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         //Follow the player in X axis
         Vector3 newPosition = transform.position;
