@@ -120,6 +120,7 @@ public class Player : MonoBehaviour
             else
             {
                 SfxManager.instance.PlayHurtSound();
+                VibrationManager.Vibrate();
             }
         }
     }
@@ -142,7 +143,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                VibrationManager.Vibrate();
+                //VibrationManager.Vibrate();
             }
         }
     }

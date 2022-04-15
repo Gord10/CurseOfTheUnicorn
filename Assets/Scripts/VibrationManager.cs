@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 public class VibrationManager : MonoBehaviour
 {
     public static bool isVibrationEnabled = true;
-
+    public static float cooldown = 0.5f;
+    private static float lastTimeVibrated = 0; //Will use Time.time to store the last time we vibrated the gamepad
     // Start is called before the first frame update
     void Start()
     {
@@ -25,11 +26,15 @@ public class VibrationManager : MonoBehaviour
 
     public static void Vibrate()
     {
-        if (Gamepad.current != null && isVibrationEnabled)
+        if(Time.time - lastTimeVibrated > cooldown)
         {
-            float lowFrequency = 0.03f;
-            float hiFrequency = 0.03f;
-            Gamepad.current.SetMotorSpeeds(lowFrequency, hiFrequency);
+            if (Gamepad.current != null && isVibrationEnabled)
+            {
+                float lowFrequency = 0.03f;
+                float hiFrequency = 0.03f;
+                Gamepad.current.SetMotorSpeeds(lowFrequency, hiFrequency);
+                lastTimeVibrated = Time.time;
+            }
         }
     }
 

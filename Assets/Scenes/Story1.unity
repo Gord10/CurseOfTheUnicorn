@@ -247,26 +247,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 821ea047aea407c468e2140f4759efac, type: 3}
---- !u!1 &611387819 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7945579981281830294, guid: 176477d6f60595a43b7792627a2e2882, type: 3}
-  m_PrefabInstance: {fileID: 7945579980863690061}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &611387823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 611387819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!1 &734658368
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,6 +293,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextSceneName: Story2
   storyFileName: story1
+--- !u!20 &1172946215 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3637711629746247799, guid: 1e547571f8866c941877ba47a325c87e, type: 3}
+  m_PrefabInstance: {fileID: 3637711630013202715}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3637711630013202715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -522,13 +507,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7945579981281830289, guid: 176477d6f60595a43b7792627a2e2882, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 543.9041
-      objectReference: {fileID: 0}
-    - target: {fileID: 7945579981281830289, guid: 176477d6f60595a43b7792627a2e2882, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 283.04794
-      objectReference: {fileID: 0}
+    - target: {fileID: 7945579980277259213, guid: 176477d6f60595a43b7792627a2e2882, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1172946215}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 176477d6f60595a43b7792627a2e2882, type: 3}
