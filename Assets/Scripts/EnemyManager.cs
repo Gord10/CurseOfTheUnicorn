@@ -62,7 +62,7 @@ public class EnemyManager : MonoBehaviour
     }
 
     //Gets the closest enemy who is both alive and rendered
-    public Enemy GetClosestEnemyAsTarget(Vector3 playerPosition)
+    public Enemy GetClosestEnemyAsTarget(Vector3 playerWeaponPosition)
     {
         float minDistance = float.MaxValue;
         Enemy closestEnemy = null;
@@ -80,7 +80,7 @@ public class EnemyManager : MonoBehaviour
             //Check if the enemy is alive, active and rendered
             if (enemy.gameObject.activeSelf && enemy.IsVisible() && enemy.IsAlive())
             {
-                float distance = Vector3.Distance(playerPosition, enemy.transform.position);
+                float distance = Vector3.Distance(playerWeaponPosition, enemy.transform.position);
                 if(distance < minDistance)
                 {
                     closestEnemy = enemy;

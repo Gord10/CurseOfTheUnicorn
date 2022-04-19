@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25c3b853bf675c14e83bfb45f0c03067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathPrefab: {fileID: 271396498131353921, guid: 481db6105fa79874881c6f51619dfbac, type: 3}
   minSpawnX: -20.7
   maxSpawnX: 14.52
   enemyPoolLength: 70

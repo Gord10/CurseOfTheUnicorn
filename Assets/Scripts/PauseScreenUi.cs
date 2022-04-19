@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using TMPro;
 
 public class PauseScreenUi : MonoBehaviour
 {
     public static PauseScreenUi instance;
     public GameObject quitButton;
+    public TMP_Text vibrationText;
 
     public void Init()
     {
@@ -22,11 +25,17 @@ public class PauseScreenUi : MonoBehaviour
     public void Open()
     {
         gameObject.SetActive(true);
+        SetVibrationText();
     }
 
     public void Close()
     {
         gameObject.SetActive(false);
+    }
+
+    private void SetVibrationText()
+    {
+        vibrationText.text = "Vibration: " + (VibrationManager.isVibrationEnabled ? "ON" : "OFF");
     }
 
     public void ResumeGame()
@@ -47,5 +56,11 @@ public class PauseScreenUi : MonoBehaviour
             ResumeGame();
             Close();
         }
+    }
+
+    public void SwitchVibration()
+    {
+        VibrationManager.instance.SwitchVibration();
+        SetVibrationText();
     }
 }
