@@ -99,7 +99,7 @@ public class Enemy : MonoBehaviour
         health = maxHealthNormalDifficulty;
 
         //Make the enemy hard
-        if(Time.timeSinceLevelLoad >= EnemyManager.instance.timeLimitForBeingDifficult && this is not Death)
+        if(this is not Death && Time.timeSinceLevelLoad >= EnemyManager.instance.timeLimitForBeingDifficult)
         {
             health = maxHealthHardDifficulty;
             spriteRenderer.sprite = greenSprite;

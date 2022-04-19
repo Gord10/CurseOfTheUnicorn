@@ -17,6 +17,7 @@ public class GameUi : MonoBehaviour
     public GameObject upgradeScreen;
     public Button healButton;
     public Button fasterAttackButton;
+    public PauseScreenUi pauseScreenUi;
 
     private EventSystem eventSystem;
 
@@ -30,7 +31,9 @@ public class GameUi : MonoBehaviour
         gameOverScreen.SetActive(false);
         upgradeScreen.SetActive(false);
 
-        eventSystem = FindObjectOfType<EventSystem>(true);
+        pauseScreenUi.Init();
+
+        //eventSystem = FindObjectOfType<EventSystem>(true);
     }
 
     public void UpdateLevelText(int newLevel)
@@ -100,20 +103,20 @@ public class GameUi : MonoBehaviour
     public void OpenUpgradeScreen()
     {
         upgradeScreen.SetActive(true);
-        eventSystem.firstSelectedGameObject = fasterAttackButton.gameObject;
+        //eventSystem.firstSelectedGameObject = fasterAttackButton.gameObject;
     }
 
     public void HealPlayer()
     {
         Player.instance.IncreaseHealth();
-        Time.timeScale = 1f;
+        GameManager.instance.ResumeGame();
         upgradeScreen.SetActive(false);
     }
 
     public void IncreaseAttackSpeed()
     {
         BulletManager.instance.IncreaseFireSpeed();
-        Time.timeScale = 1f;
+        GameManager.instance.ResumeGame();
         upgradeScreen.SetActive(false);
     }
 }

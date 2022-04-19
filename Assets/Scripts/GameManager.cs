@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,9 +12,19 @@ public class GameManager : MonoBehaviour
     public int currentExp = 0;
     public int[] levelExpRequirements; //Level 1's exp requirement is at 0th index
 
+    private enum State
+    {
+        IN_GAME,
+        PAUSED,
+        UPGRADE,
+        GAME_OVER
+    }
+
+    private State state = State.IN_GAME;
+
     private int expRequirementForNextLevel = 10; //Player will reach the next level when they gain this much experience. We will read the necessary value from levelExpRequirements array 
     private int playerLevel = 1;
-    private bool isGameOver = false;
+    //private bool isGameOver = false;
     private float timeWhenGameWasOver = 0; //Time.realtimeSinceStartup will be assigned to this value when game is over
 
     private void Awake()
@@ -26,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     public bool IsGameOver()
     {
-        return isGameOver;
+        return state == State.GAME_OVER;
     }
 
     //Player has killed an enemy 
@@ -44,6 +55,7 @@ public class GameManager : MonoBehaviour
 
     private void IncreaseLevel()
     {
+        state = State.UPGRADE;
         SfxManager.instance.PlayLevelUpSound();
         Time.timeScale = 0;
         playerLevel++;
@@ -67,7 +79,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isGameOver)
+        if(state == State.GAME_OVER)
         {
             float threshold = 1f; //We do this check in order to avoid player accidentally skipping the game over screen by pressing a key
             if(Input.anyKeyDown && Time.realtimeSinceStartup - timeWhenGameWasOver > threshold)
@@ -76,12 +88,25 @@ public class GameManager : MonoBehaviour
             }
         }
 
-#if UNITY_STANDALONE
-        if(Input.GetKeyDown(KeyCode.Escape))
+        bool isGamePadStartButtonPressed = false;
+
+        if(Gamepad.current != null)
         {
-            Application.Quit();
+            if(Gamepad.current.startButton.isPressed)
+            {
+                isGamePadStartButtonPressed = true;
+            }
         }
-#endif
+
+        if(Input.GetKeyDown(KeyCode.Escape) || isGamePadStartButtonPressed)
+        {
+            if(state == State.IN_GAME) //Pause the game
+            {
+                PauseScreenUi.instance.Open();
+                state = State.PAUSED;
+                Time.timeScale = 0f;
+            }
+        }
     }
 
     public static void RestartScene()
@@ -92,8 +117,9 @@ public class GameManager : MonoBehaviour
 
     public void ReportGameOver()
     {
+        state = State.GAME_OVER;
         SfxManager.instance.PlayLoseSound();
-        isGameOver = true;
+        //isGameOver = true;
         GameUi.instance.ShowGameOverScreen();
         Time.timeScale = 0f;
         timeWhenGameWasOver = Time.realtimeSinceStartup;
@@ -104,4 +130,11 @@ public class GameManager : MonoBehaviour
         VibrationManager.StopVibration();
         SceneManager.LoadScene("Story4");
     }
+
+    public void ResumeGame()
+    {
+        state = State.IN_GAME;
+        Time.timeScale = 1f;
+    }
+
 }
