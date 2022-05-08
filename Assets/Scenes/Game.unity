@@ -219,7 +219,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085321027}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
   m_Name: 
@@ -239,6 +239,11 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3083125370361948200, guid: 0d1269bc0f54144458537580e2d06319, type: 3}
   m_PrefabInstance: {fileID: 3083125370375408737}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1916518520 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5749278161534334784, guid: e57b8461b497f1e468dd6dd5ca500521, type: 3}
+  m_PrefabInstance: {fileID: 5872471868759156482}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1342509782272672644
 PrefabInstance:
@@ -571,6 +576,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 307678663, guid: e57b8461b497f1e468dd6dd5ca500521, type: 3}
+      propertyPath: vibrationButton
+      value: 
+      objectReference: {fileID: 1916518520}
     - target: {fileID: 778212919, guid: e57b8461b497f1e468dd6dd5ca500521, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

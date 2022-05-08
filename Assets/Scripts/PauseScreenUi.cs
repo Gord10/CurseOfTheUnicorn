@@ -8,7 +8,7 @@ using TMPro;
 public class PauseScreenUi : MonoBehaviour
 {
     public static PauseScreenUi instance;
-    public GameObject quitButton;
+    public GameObject quitButton, vibrationButton;
     public TMP_Text vibrationText;
 
     public void Init()
@@ -17,7 +17,9 @@ public class PauseScreenUi : MonoBehaviour
         Close();
 
 #if UNITY_WEBGL
-        quitButton.SetActive(false); //We don't need a quit button for WebGL
+        //We don't need these buttons for WebGL
+        quitButton.SetActive(false); 
+        vibrationButton.SetActive(false);
 #endif
 
     }
